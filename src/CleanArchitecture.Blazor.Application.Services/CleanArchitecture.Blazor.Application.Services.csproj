@@ -9,7 +9,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Application\Application.csproj" />
     <ProjectReference Include="..\CleanArchitecture.Blazor.Application.Core\CleanArchitecture.Blazor.Application.Core.csproj" />
-    <ProjectReference Include="..\MyApp.Application.Core\CleanArchitecture.Blazor.Application.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

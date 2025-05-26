@@ -30,6 +30,8 @@
         <ProjectReference Include="..\Migrators\Migrators.MSSQL\Migrators.MSSQL.csproj" />
         <ProjectReference Include="..\Migrators\Migrators.PostgreSQL\Migrators.PostgreSQL.csproj" />
         <ProjectReference Include="..\Migrators\Migrators.SqLite\Migrators.SqLite.csproj" />
+        <ProjectReference Include="..\MyApp.Application.Core\CleanArchitecture.Blazor.Application.Core.csproj" />
+        <ProjectReference Include="..\MyApp.Application.Services\CleanArchitecture.Blazor.Application.Services.csproj" />
     </ItemGroup>
     <ItemGroup>
         <EmbeddedResource Include="Resources\EmailTemplates\_useractivation.cshtml">

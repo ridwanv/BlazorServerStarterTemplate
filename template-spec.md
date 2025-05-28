@@ -1,44 +1,50 @@
-﻿## 4. Project Responsibilities
+# 🤖 GitHub Copilot Agent Instructions
 
-### 4.1 Server.UI
+The GitHub Copilot Agent should follow the structure and conventions outlined below when generating or modifying code.
 
-- Implements the Blazor Server UI.
-- Contains UI components, pages, and UI logic.
-- Consumes services exposed by `Application.Services` and interfaces from `Application`.
-- Should not depend directly on `Infrastructure`.
+---
 
-### 4.2 Application
+## 📁 Project Structure & Responsibilities
 
-- Contains use cases, command/query handlers, interfaces, and DTO abstractions.
-- Orchestrates business workflows and mediates communication between UI and domain layers.
-- Holds interfaces for repositories and service abstractions.
-- Follows the CQRS pattern where applicable.
+### `Application.Core`
+Use this project for:
 
-### 4.3 Infrastructure
+- All **DTOs** (Data Transfer Objects)
+- All **mappings** (e.g., AutoMapper profiles)
+- All **entities**, enums, and value objects
 
-- Implements persistence with Entity Framework Core.
-- Provides implementations for repositories and other service interfaces declared in `Application`.
-- Integrates external services (e.g., email, file storage).
-- Contains database migrations.
+### `Application.Services`
+Use this project for:
 
-### 4.4 Domain
+- All **business services**
+- All **service interfaces and implementations**
+- All **application workflows and feature logic**
 
-- Contains domain-level interfaces (e.g., marker interfaces like `IAggregateRoot`).
-- Shared domain enums and constants.
-- Defines the core domain logic that is independent of infrastructure.
+---
 
-### 4.5 Application.Core
+## ❌ What to Avoid
 
-- **All custom domain code (DTOs, Entities, Value Objects, Mapping Profiles) should reside here.**
-- Holds core business entities, Data Transfer Objects (DTOs), and Value Objects.
-- Defines mapping profiles (e.g., AutoMapper configurations).
-- Contains domain events and specifications.
-- Acts as the domain model project, encapsulating business rules and logic.
-- This project is designed to be application-agnostic and reusable across multiple solutions.
+- Do **not** create folders or classes named `UseCases`, `Features`, `Commands`, or `QueryHandlers`.
+- Do **not** use **MediatR**, **CQRS**, or feature-based architecture.
+- Avoid placing custom logic inside the UI or Infrastructure projects.
 
-### 4.6 Application.Services
+---
 
-- **All custom business logic, domain services, and service implementations should reside here.**
-- Implements domain services encapsulating complex business logic that does not naturally fit inside entities or value objects.
-- Services here can be independently tested and reused.
-- These services depend on abstractions from the `Application` project and may depend on infrastructure implementations for persistence.
+## ✅ Design Guidelines
+
+- Follow a **service-oriented**, **modular**, and **clean architecture** approach.
+- Use **dependency injection** to wire services into the UI layer.
+- Organize code into folders by domain (e.g., `Policies`, `Claims`) under both `Core` and `Services`.
+
+---
+
+## Example
+
+For a feature like “Start Claim”:
+- Define `ClaimDto.cs` in `Application.Core/Claims`
+- Create `ClaimService.cs` in `Application.Services/Claims`
+- Add interface `IClaimService.cs` in the same folder
+
+---
+
+By adhering to these guidelines, the Copilot Agent ensures all generated functionality is aligned with the project’s architectural standards and remains easily maintainable.
